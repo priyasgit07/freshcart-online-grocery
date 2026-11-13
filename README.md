@@ -6,7 +6,7 @@ The system enables **Customers** to browse, search, and purchase groceries with 
 
 ---
 
-## ðŸ›ï¸ System Architecture
+## 🏛️ System Architecture
 
 ```mermaid
 flowchart TD
@@ -45,7 +45,7 @@ flowchart TD
 
 ---
 
-## ðŸ“‹ SRS Requirements Traceability Matrix
+## 📋 SRS Requirements Traceability Matrix
 
 | SRS Requirement | Functional Module | Implementation Details |
 |---|---|---|
@@ -62,7 +62,7 @@ flowchart TD
 
 ---
 
-## ðŸ› ï¸ Technology Stack
+## 🛠️ Technology Stack
 
 - **Frontend:**
   - **Framework:** React 18 with Vite
@@ -84,7 +84,7 @@ flowchart TD
 
 ---
 
-## ðŸ‘¥ Pre-Configured Seed Accounts
+## 👥 Pre-Configured Seed Accounts
 
 When the application boots with an empty database, `DataInitializer` can optionally seed initial accounts if passwords are provided via environment variables (`SEED_ADMIN_PASSWORD`, `SEED_CUSTOMER_PASSWORD`, `SEED_VENDOR_PASSWORD`). If these environment variables are omitted or left blank, demo account creation is skipped:
 
@@ -99,7 +99,7 @@ When the application boots with an empty database, `DataInitializer` can optiona
 
 ---
 
-## ðŸ”’ Security & Quality Enhancements
+## 🔒 Security & Quality Enhancements
 
 1. **Zero Hardcoded Credentials:**
    - Database credentials, JWT secrets, and token expiry parameters are strictly externalized via environment variables.
@@ -118,7 +118,7 @@ When the application boots with an empty database, `DataInitializer` can optiona
 
 ---
 
-## ðŸš€ Getting Started
+## 🚀 Getting Started
 
 ### Prerequisites
 - **Java:** JDK 17, 21, or newer (tested on Java 21 and OpenJDK 26)
