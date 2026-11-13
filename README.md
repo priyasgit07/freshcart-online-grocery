@@ -84,9 +84,11 @@ flowchart TD
 
 ---
 
-## 👥 Pre-Configured Seed Accounts
+## 👥 Optional Demo Accounts
 
-When the application boots with an empty database, `DataInitializer` can optionally seed initial accounts if passwords are provided via environment variables (`SEED_ADMIN_PASSWORD`, `SEED_CUSTOMER_PASSWORD`, `SEED_VENDOR_PASSWORD`). If these environment variables are omitted or left blank, demo account creation is skipped:
+When the application starts with a new or empty database, `DataInitializer` creates demo accounts only when the required passwords are provided through environment variables. If these variables are missing or blank, demo account creation is skipped.
+
+The following demo accounts are available when the corresponding seed passwords are configured:
 
 | Role | Email | Password Source | Details / Assigned Permissions |
 |---|---|---|---|
@@ -138,12 +140,10 @@ When the application boots with an empty database, `DataInitializer` can optiona
    - The Spring Boot JDBC URL is pre-configured with `createDatabaseIfNotExist=true`. If the `online_grocery_db` database does not exist, MySQL creates it automatically on the first connection.
    - Hibernate ORM with `spring.jpa.hibernate.ddl-auto=update` inspects all entity definitions (`User`, `Vendor`, `Product`, `Order`, `OrderItem`, `CartItem`, `Notification`) and automatically creates all tables, foreign keys, indexes, and unique constraints.
    - *Production Note:* In production environments, set `spring.jpa.hibernate.ddl-auto=validate` and manage schema changes via a dedicated database migration tool (e.g. Flyway or Liquibase).
-3. **Automated Seed Data Insertion:**
-   - When the application boots against a newly created or empty database, `DataInitializer` automatically provisions:
-     - 1 System Administrator account (`admin@grocery.com`)
-     - 2 Verified Merchant Vendor accounts (`freshfarms@grocery.com`, `greenvalley@grocery.com`)
-     - 1 Active Customer account (`customer@grocery.com`)
-     - 13 Pre-stocked grocery catalog products across 5 core categories with real pricing and stock quantities.
+3. **Optional Demo Account Seeding:**
+   - Demo accounts are created only when the required seed password environment variables are configured.
+   - If the passwords are not configured, demo account creation is skipped.
+   - The application includes 13 pre-stocked grocery products across its configured categories.
 
 ---
 
@@ -233,7 +233,7 @@ docker compose up --build
 
 ---
 
-## ðŸ§ª Automated Testing
+## 🧪 Automated Testing
 
 The project includes automated test suites for both backend and frontend layers:
 
@@ -264,7 +264,7 @@ npm run build
 
 ---
 
-## ðŸ“¡ REST API Reference
+## 📡 REST API Reference
 
 | Method | Endpoint | Access | Description |
 |---|---|---|---|
@@ -312,7 +312,7 @@ npm run build
 
 ---
 
-## ðŸ“Œ Scope & Architectural Boundaries
+## 📌 Scope & Architectural Boundaries
 
 In strict accordance with the SRS specification:
 - **Payment Method:** The platform operates exclusively on **Cash on Delivery (COD)**. No third-party or paid payment gateway integrations are used.
@@ -321,7 +321,7 @@ In strict accordance with the SRS specification:
 
 ---
 
-## ðŸ” Manual Testing & Verification Checklist
+## 🔍 Manual Testing & Verification Checklist
 
 When performing manual browser validation:
 
@@ -331,7 +331,7 @@ When performing manual browser validation:
    - Test **Vendor Partner Application**: Switch to the **Vendor Partner** tab. Submit an application. Verify the confirmation screen indicating the account is pending administrator approval.
    - Attempt login with the new vendor account. Confirm the user-friendly notification: *"Your vendor account is pending administrator approval."*
 2. **Administrator Governance & Vendor Approval:**
-   - Log in as Admin using the 1-click quick fill button on the Login page (`admin@grocery.com` / `Admin@123`).
+   - Configure `SEED_ADMIN_PASSWORD` in your `.env` file and use the corresponding password to log in as Admin (`admin@grocery.com`).
    - Navigate to **Admin &rarr; Vendors**. Verify the newly registered vendor appears with a **Pending / Suspended** badge.
    - Click **Approve Vendor**. Verify badge updates to **Active**.
    - Log out and log in with the newly approved vendor credentials. Confirm access to Vendor Dashboard and Product Management.
